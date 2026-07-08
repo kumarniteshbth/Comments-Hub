@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Comment</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+
+    <div class="top-bar">
+
+        <div>
+
+            <h1 class="title">
+                ✨ New Comment
+            </h1>
+
+            <p class="subtitle">
+                Share your thoughts with everyone.
+            </p>
+
+        </div>
+
+        <a href="/comments" class="btn secondary">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back
+
+        </a>
+
+    </div>
+
+    <!-- Form Card -->
+
+    <div class="card">
+
+        <form action="/comments" method="POST">
+
+            <label>
+                <i class="fa-solid fa-user"></i>
+                Username
+            </label>
+
+            <input
+                type="text"
+                name="user"
+                placeholder="Enter your username..."
+                required
+            >
+
+            <label>
+                <i class="fa-solid fa-comment-dots"></i>
+                Comment
+            </label>
+
+            <textarea
+                name="text"
+                placeholder="Write your comment here..."
+                required
+            ></textarea>
+
+            <div
+                style="
+                display:flex;
+                gap:15px;
+                margin-top:25px;
+                flex-wrap:wrap;
+                ">
+
+                <button class="btn success">
+
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                    Post Comment
+
+                </button>
+
+                <a
+                href="/comments"
+                class="btn primary">
+
+                    Cancel
+
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

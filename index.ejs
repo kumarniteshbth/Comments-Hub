@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Hub</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+
+    <div class="top-bar">
+
+        <div class="hero">
+
+            <h1 class="title">💬 Comment Hub</h1>
+
+            <p class="subtitle">
+                Read, like, dislike, and manage comments in one sleek place.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="/comments/new" class="btn success large">
+                    <i class="fa-solid fa-plus"></i>
+                    Add New Comment
+                </a>
+                <a href="/" class="btn secondary">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <% if(comments.length===0){ %>
+
+        <div class="card center">
+
+            <h2>No Comments Yet 😔</h2>
+
+            <p class="subtitle">Be the first to add a comment and make this feed lively.</p>
+
+            <a href="/comments/new" class="btn success large">
+                Add First Comment
+            </a>
+
+        </div>
+
+    <% } %>
+
+    <% comments.forEach(comment=>{ %>
+
+        <div class="card">
+
+            <div class="comment">
+
+                <!-- Left Side -->
+
+                <div style="display:flex;align-items:flex-start;gap:18px;flex:1;">
+
+                    <div class="avatar">
+                        <%= comment.user.charAt(0).toUpperCase() %>
+                    </div>
+
+                    <div class="comment-info">
+
+                        <h2><%= comment.user %></h2>
+
+                        <p><%= comment.text %></p>
+
+                        <span class="badge">
+                            ❤️ <%= comment.likes %> Likes
+                            &nbsp;&nbsp;|&nbsp;&nbsp;
+                            👎 <%= comment.dislikes %> Dislikes
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <!-- Buttons -->
+
+                <div class="actions">
+
+                    <a
+                    href="/comments/<%= comment._id %>"
+                    class="btn primary">
+                        <i class="fa-solid fa-eye"></i>
+                        View
+                    </a>
+
+                    <a
+                    href="/comments/<%= comment._id %>/edit"
+                    class="btn warning">
+                        <i class="fa-solid fa-pen"></i>
+                        Edit
+                    </a>
+
+                    <!-- Like -->
+
+                    <form
+                    action="/comments/<%= comment._id %>/like?_method=PATCH"
+                    method="POST">
+
+                        <button class="btn like-btn">
+                            ❤️ Like
+                        </button>
+
+                    </form>
+
+                    <!-- Dislike -->
+
+                    <form
+                    action="/comments/<%= comment._id %>/dislike?_method=PATCH"
+                    method="POST">
+
+                        <button class="btn secondary">
+                            👎 Dislike
+                        </button>
+
+                    </form>
+
+                    <!-- Delete -->
+
+                    <form
+                    class="delete-form"
+                    action="/comments/<%= comment._id %>?_method=DELETE"
+                    method="POST">
+
+                        <button class="btn danger">
+                            <i class="fa-solid fa-trash"></i>
+                            Delete
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    <% }) %>
+
+</div>
+
+</body>
+</html>
